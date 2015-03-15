@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('test', ['ngRoute', 'ngAnimate', 'ngTouch','elasticjs.service', 'ngSanitize','infinite-scroll']);
+var app = angular.module('test', ['ngRoute', 'ngAnimate', 'ngSanitize', 'timer']);
 
 	app.config(['$routeProvider', function($routeProvider) {
 	
@@ -10,7 +10,7 @@ var app = angular.module('test', ['ngRoute', 'ngAnimate', 'ngTouch','elasticjs.s
 		});
 		$routeProvider.when('/search', {
 			templateUrl: '/public/app/views/search.php',
-			controller: 'SearchController'
+			controller: 'IndexController'
 		});
 		$routeProvider.when('/ticket/:placeId', {
 			templateUrl: '/public/app/views/view.php',

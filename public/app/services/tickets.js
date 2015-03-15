@@ -1,25 +1,46 @@
 app.factory('Tickets', ['$http', '$rootScope', function($http, $rootScope) {
 	
 	var tickets = [];
+	var blocks = [];
 	
 	function getPlaces() {
 		$http({method: 'GET', url: '/ticketsList'})
 			.success(function(data, status, headers, config) {
 				tickets = data;
-				$rootScope.$broadcast('tickets:updated');
+				$rootScope.$broadcast('ticket:loaded');
 			})
 			.error(function(data, status, headers, config) {
 				console.log(data);
 			});
 	}
 	
-	//getPlaces();
+	function getBlocks() {
+		$http({method: 'GET', url: '/ticketsBlocks'})
+			.success(function(data, status, headers, config) {
+				blocks = data;
+				$rootScope.$broadcast('block:loaded');
+				
+			})
+			.error(function(data, status, headers, config) {
+				console.log(data);
+			});
+
+		return blocks;
+	}
+	
+	getPlaces();
+	getBlocks();
 	
 	var service = {};
 	
 	service.getAll = function() {
 		return tickets;
 	}
+	
+	service.getBlocks = function() {
+		return blocks;
+	}
+	
 	
 	service.get = function(id) {
 		var ticket = null;
@@ -58,22 +79,6 @@ app.factory('Tickets', ['$http', '$rootScope', function($http, $rootScope) {
 				console.log(data);
 			});
 		return firstTicket;
-	}
-	
-	var blocks = [];
-	
-	service.getBlocks = function() {
-		$http({method: 'GET', url: '/ticketsBlocks'})
-			.success(function(data, status, headers, config) {
-				blocks = data;
-				$rootScope.$broadcast('block:loaded');
-				
-			})
-			.error(function(data, status, headers, config) {
-				console.log(data);
-			});
-
-		return blocks;
 	}
 	
 	return service;

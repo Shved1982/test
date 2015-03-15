@@ -1,26 +1,27 @@
 app.controller('SearchController', ['$scope', '$rootScope', 'Tickets', 
 	function($scope, $rootScope, Tickets) {
 								
-	$scope.tickets = Tickets.getAll();
+	$scope.blocksList = [];
+	$scope.size = 50;
+	$scope.searchResult = false;
+	$scope.blocksList = Tickets.getAll();
 	
-	$rootScope.$on('ticket:updated', function() {
-		$scope.places = Places.getAll();
-	});
 	
-	$scope.isEmpty = function() 
-	{
-		if ($scope.places.length === 0) 
+	$rootScope.$on('block:loaded', function() {
+		if ($scope.blocksList.length === 0) 
 		{
-			return true;
+			$scope.blocksList = Tickets.getAll();
 		}
-		return false;
-	}
+	});
 
-	$scope.delete = function(place) {
-		Places.delete(place);
+	
+	$scope.searching = function() 
+	{
+		if ($scope.blocksList.length === 0) 
+		{
+			$scope.blocksList = Tickets.getAll();
+		}
+		$scope.searchResult = true;
 	}
 	
-	$scope.show = function(place) {
-		$rootScope.$broadcast('place:show', place);
-	}
 }]);
