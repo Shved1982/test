@@ -1,8 +1,6 @@
-app.controller('TicketsController', ['$scope', '$rootScope', 'Places', '$dialog', 'lang', 
-	function($scope, $rootScope, Places, $dialog, lang) {
+app.controller('SearchController', ['$scope', '$rootScope', 'Tickets', 
+	function($scope, $rootScope, Tickets) {
 								
-	$scope.curLang = lang;
-	
 	$scope.tickets = Tickets.getAll();
 	
 	$rootScope.$on('ticket:updated', function() {

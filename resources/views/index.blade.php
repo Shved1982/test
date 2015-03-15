@@ -47,17 +47,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			
-			<div ng-controller="PlayController">
-				<ng-view></ng-view>
-			</div>
-			
-			<div ng-controller="TicketsController">
-				<ng-view></ng-view>		
-			</div>
-			
-			<div ng-controller="SearchController">
-				<ng-view></ng-view>
-			</div>
+		
 			
 			
 		</div>
@@ -67,14 +57,6 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="/js/angular.js"></script>
-	<script src="/js/angular-route.min.js"></script>
-	<script src="/js/angular-sanitize.min.js"></script>
-	<script src="/js/ui-bootstrap-tpls-0.4.0.min.js"></script>
-	<script src="/js/angular-translate.min.js"></script>
-	<script src="/app/app.js"></script>
-	<script src="/app/services/tickets.js"></script>
-	<script src="/app/controllers/TicketsController.js"></script>
-	<script src="/app/controllers/PlayController.js"></script>
+
 </body>
 </html>

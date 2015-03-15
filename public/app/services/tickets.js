@@ -13,7 +13,7 @@ app.factory('Tickets', ['$http', '$rootScope', function($http, $rootScope) {
 			});
 	}
 	
-	getPlaces();
+	//getPlaces();
 	
 	var service = {};
 	
@@ -58,6 +58,22 @@ app.factory('Tickets', ['$http', '$rootScope', function($http, $rootScope) {
 				console.log(data);
 			});
 		return firstTicket;
+	}
+	
+	var blocks = [];
+	
+	service.getBlocks = function() {
+		$http({method: 'GET', url: '/ticketsBlocks'})
+			.success(function(data, status, headers, config) {
+				blocks = data;
+				$rootScope.$broadcast('block:loaded');
+				
+			})
+			.error(function(data, status, headers, config) {
+				console.log(data);
+			});
+
+		return blocks;
 	}
 	
 	return service;

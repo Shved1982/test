@@ -6231,3 +6231,20 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+
+
+
+.blocks{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	margin: 25px;
+	padding: 25px;
+	border: 1px solid #000000;
+	border-radius: 2px;
+}
+
+.blocks:hover{
+	cursor: pointer;
+}
+
