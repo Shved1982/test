@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('test', ['ngRoute', 'ngAnimate', 'ngSanitize', 'timer']);
+var app = angular.module('test', ['ngRoute', 'ui.bootstrap', 'ngAnimate']);
 
 	app.config(['$routeProvider', function($routeProvider) {
 	
@@ -16,9 +16,9 @@ var app = angular.module('test', ['ngRoute', 'ngAnimate', 'ngSanitize', 'timer']
 			templateUrl: '/public/app/views/view.php',
 			controller: 'TicketsController'
 		});
-		$routeProvider.when('/play', {
+		$routeProvider.when('/public/app/views/play/sec/:sec', {
 			templateUrl: '/public/app/views/play.php',
-			controller: 'PlayController'
+			controller: 'IndexController'
 		});
 		$routeProvider.otherwise({
 			redirectTo: '/'

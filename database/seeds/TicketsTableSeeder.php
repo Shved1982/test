@@ -11,9 +11,10 @@ class TicketsTableSeeder extends Seeder {
 
 		for($i = (int)FALSE; $i < 1000; $i++)
 		{
-			Tickets::create(['cities_arrival_id' => 1,'cities_departure_id ' => 1, 'planes_id' => 2,
-							'price' => 2111.58, 'date_arrival' => '2015-02-15 15:00:15', 'date_departure' => '2015-02-15 15:00:15',
-							'is_active' => 1, 'img_url' => '/upload', 'email' => 'foo@bar.com']);
+			Tickets::create(['cities_arrival_id' => rand(1,5),'cities_departure_id ' => rand(1,5), 'planes_id' => rand(1,5),'price' => rand(100,21000), 
+							'date_arrival' => rand(2015,2016).'-'.rand(1,12).'-'.rand(1,28).' '.rand(1,24).':'.rand(1,59).':'.rand(1,59), 
+							'date_departure' => rand(2017,2018).'-'.rand(1,12).'-'.rand(1,28).' '.rand(1,24).':'.rand(1,59).':'.rand(1,59),
+							'is_active' => rand(0,1), 'img_url' => '/upload', 'email' => 'foo'.rand(1,100).'@bar.com']);
 		}
     }
 

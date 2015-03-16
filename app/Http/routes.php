@@ -20,6 +20,10 @@ Route::get('/public/app/views/main.php', function() {
 	return View::make('main');
 });
 
+Route::get('/public/app/views/play/sec/{sec}', function($sec) {
+	return View::make('play', ['sec' => $sec]);
+});
+
 Route::get('/public/app/views/search.php', function() {
 	return View::make('search');
 });
@@ -29,12 +33,12 @@ Route::get('/public/app/views/mainyoutube.php', function() {
 });
 Route::get('/ticketsFirst', function() {
 
-	$tickets = App\Tickets::active()->orderBy('date_arrival', 'asc')->limit(1)->get();
+	$tickets = App\Tickets::active()->where('date_arrival', '>=', date("Y-m-d H:i:s"))->orderBy('date_arrival', 'asc')->limit(1)->get();
 	
 	$result = array();
 	foreach($tickets as $ticket)
 	{
-		$result = strtotime($ticket->date_arrival);
+		$result = strtotime($ticket->date_arrival) - strtotime(date("Y-m-d H:i:s"));
 	}
 	
 	return Response::json($result);

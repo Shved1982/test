@@ -1,8 +1,29 @@
 <div class="row">
-	<div class="col-md-10 col-md-offset-2">
-		<iframe width="640" height="360" src="https://www.youtube.com/embed/rBGo6TP1DtM?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+	<div class="col-md-10 col-md-offset-4 opacity">
+		<div id="ytapiplayer">
+			You need Flash player 8+ and JavaScript enabled to view this video.
+		</div><br>
+		<a href="javascript:void(0);" onclick="playModal();">Увеличить</a>
 	</div>
+	
 </div>
+<script type="text/javascript">
+
+    var params = { allowScriptAccess: "always" };
+    var atts = { id: "myytplayer" };
+	
+    swfobject.embedSWF("http://www.youtube.com/v/rBGo6TP1DtM?enablejsapi=1&playerapiid=ytplayer&version=3",
+                       "ytapiplayer", "425", "356", "8", null, null, params, atts);
+	
+	function onYouTubePlayerReady(playerId) {
+		ytplayer = document.getElementById("myytplayer");
+    }
+	
+	function playModal() {
+		var sec = ytplayer.getCurrentTime();
+		location.href = '/public/app/views/play/sec/'+sec;
+	}
+</script>
 <hR>
 <div class="row">
 	<div class="col-12" >
@@ -23,10 +44,11 @@
 </div>
 <hR>
 <div class="row">
-	<div class="col-md-12 col-md-offset-5" style="margin-bottom: 30px;">
-		{{time}}
+	<div class="col-md-12 col-md-offset-4" style="margin-bottom: 30px;">
+		<span my-current-time="format"></span>
 	</div>
 </div>
+<hR>
 <div class="row">
 	<div class="col-md-12 col-md-offset-5" style="margin-bottom: 30px;">SEARCH PANEL</div>
 	

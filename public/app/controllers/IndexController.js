@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('IndexController', ['$scope', '$rootScope', 'Tickets', '$sce','$interval','$filter',
-	function($scope, $rootScope, Tickets, $sce, $interval, $filter) {
+app.controller('IndexController', ['$scope', '$rootScope', 'Tickets', 'Video', '$sce','$interval','$filter',
+	function($scope, $rootScope, Tickets, Video, $sce, $interval, $filter) {
 	
 	$scope.blocksList = [];
 	$scope.blocksList = Tickets.getBlocks();
@@ -29,13 +29,13 @@ app.controller('IndexController', ['$scope', '$rootScope', 'Tickets', '$sce','$i
 	
 	$scope.currentPage = 0;
 
-	$rootScope.$on('first:updated', function() {
+	$scope.modalShown = false;
+	$scope.toggleModal = function() {
+		$scope.modalShown = !$scope.modalShown;
+	};
 	
-		$interval(function(){ 
-			$scope.time = $filter('date')($scope.firstPlane,"ddhh:mm:ss a", 'UTC')
-		},1000,0,null);
-	});
-
+	$scope.items = Video.get();
+	
 	$rootScope.$on('block:loaded', function() {
 		if ($scope.blocksList.length === 0) 
 		{
@@ -132,4 +132,35 @@ app.filter('pagination', function()
     start = parseInt(start, 10);
     return input.slice(start);
   };
+});
+
+app.filter('dateFormater', function(){
+	return function(param){
+		var dateCurrent = param;
+		var days = Math.floor(dateCurrent/86400);
+		var hours = Math.floor((dateCurrent - days*86400)/3600);
+		var minuts = Math.floor((dateCurrent - days*86400 - hours*3600)/60);
+		var seconds = Math.floor(dateCurrent - days*86400 - hours*3600 - minuts*60);
+		
+		var value = '';
+		
+		if(days > 0)
+		{
+			value += days + ' days ';
+		}
+		if(hours > 0)
+		{
+			value += hours + ' hours ';
+		}
+		if(minuts > 0)
+		{
+			value += minuts + ' minuts ';
+		}
+		if(seconds > 0)
+		{
+			value += seconds + ' seconds ';
+		}
+		
+		return value;
+	}
 });
